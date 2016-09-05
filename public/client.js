@@ -48,3 +48,13 @@ function onS3Done(e, data) {
   // your backend. Remember that we did not persist anything before the upload.
   console.log($('<a/>').attr('href', s3Url).text('File uploaded at '+s3Url).appendTo($('body')));
 };
+function s3Copy(){
+  $.ajax({
+    url: 'https://media.cincygrace.com.s3.amazonaws.com',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+     console.log(data);
+    }
+  });
+}

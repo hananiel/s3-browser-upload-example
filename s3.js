@@ -51,7 +51,7 @@ function s3UploadPolicy(config, filename, credential) {
       { success_action_status: "201" },
       // Optionally control content type and file size
       // {'Content-Type': 'application/pdf'},
-      ['content-length-range', 0, 1000],
+      ['content-length-range', 0, 10000000],
       { 'x-amz-algorithm': 'AWS4-HMAC-SHA256' },
       { 'x-amz-credential': credential },
       { 'x-amz-date': dateString() + 'T000000Z' }

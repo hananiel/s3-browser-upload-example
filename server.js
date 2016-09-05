@@ -1,6 +1,7 @@
 var express = require('express');
 var crypto = require('crypto');
 var path = require('path');
+var exphbs = require('express-handlebars');
 
 var s3 = require('./s3');
 
@@ -13,16 +14,19 @@ var s3Config = {
 
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 80));
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/s3_credentials', function(request, response) {
   if (request.query.filename) {
-    var filename =
-      crypto.randomBytes(16).toString('hex') +
-      path.extname(request.query.filename);
-    response.json(s3.s3Credentials(s3Config, filename));
+    console.log("s3_credentials", request.query.filename);
+       var filename  = "banners/"+request.query.filename;
+        var s3Creds = s3.s3Credentials(s3Config, filename);
+
+        console.log(s3Creds);
+
+    response.json(s3Creds);
   } else {
     response.status(400).send('filename is required');
   }
