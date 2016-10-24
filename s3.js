@@ -8,7 +8,7 @@ var crypto = require('crypto');
 // * secretKey
 function s3Credentials(config, filename) {
   return {
-    endpoint_url: "https://" + config.bucket + ".s3.amazonaws.com",
+    endpoint_url: "http://" + config.bucket + ".s3.amazonaws.com",
     params: s3Params(config, filename)
   }
 }
